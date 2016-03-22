@@ -17,9 +17,7 @@ class UserModel
 
         $stmt->execute();
 
-        $list =  $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        return $list;
+        return  $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
     public function getUser($id){
         $conn = DatabaseManager::getConnection();
