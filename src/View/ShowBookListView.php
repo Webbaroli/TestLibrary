@@ -5,21 +5,21 @@ namespace Src\View;
 
 use Src\View\Component\MenuComponent;
 
-class ShowUserListView
+class ShowBookListView
 {
 
-    public function render($userList){
+    public function render($bookList){
 
         $menuComponent = new MenuComponent();
         $menuComponent->render();
 
-        if(count($userList) > 0){
+        if(count($bookList) > 0){
             echo "<table style=\"width:100%\">";
 
             echo $this->getTableHeader();
 
-            foreach($userList as $user){
-                echo $this->getTableRow($user['id'], $user['name'], $user['email']);
+            foreach($bookList as $book){
+                echo $this->getTableRow($book['id'], $book['title'], $book['isbn']);
             }
 
             echo "</table>";
@@ -30,27 +30,27 @@ class ShowUserListView
         echo "<br>";
         echo "<br>";
 
-        echo "<a href=\"index.php?action=showInsertUserForm\">insert new contact</a>";
+        echo "<a href=\"index.php?action=showInsertBookForm\">insert new book</a>";
     }
 
     private function getTableHeader(){
         $string = <<<STRING
         <tr>
-            <th>name</th>
-            <th>email</th>
+            <th>title</th>
+            <th>isbn</th>
             <th>action</th>
         </tr>
 STRING;
         return $string;
     }
 
-    private function getTableRow($id, $name, $email){
+    private function getTableRow($id, $title, $isbn){
         $string = "
             <tr>
-                <td>".$name."</td>
-                <td>".$email."</td>
+                <td>".$title."</td>
+                <td>".$isbn."</td>
                 <td>
-                    <a href=\"index.php?action=showUpdateUserForm&id=".$id."\">update</a>
+                    <a href=\"index.php?action=showUpdateBookForm&id=".$id."\">update</a>
                 </td>
             </tr>";
         return $string;
